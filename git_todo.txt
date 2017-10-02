@@ -30,6 +30,11 @@ get the files from github with:
 git pull -u origin master
 git pull
 
+use fetch to get the files stored in the repository:
+
+git fetch --all
+git reset --hard origin/master
+
 give htaccess and editor config file names when using git and put back to normal when coding
 
 
