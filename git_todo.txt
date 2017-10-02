@@ -22,13 +22,15 @@ git commit -m "Add informative message about the commit"
 
 push the updated files to github:
 
-git push -u origin master
+git push origin master
 git push
 
 get the files from github with:
 
 git pull -u origin master
 git pull
+
+give htaccess and editor config file names when using git and put back to normal when coding
 
 
 use full links:
