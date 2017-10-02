@@ -7,8 +7,6 @@ set up:
 
 git init
 git remote add origin https://github.com/jacobe911/REPOSITORY_NAME_HERE.git
-git push -u origin master <-- only use if just setup a new repository else use
-git pull -u origin master <-- to get the files already within the repository
 
 check to see differences made to files and stage/commit status:
 
@@ -24,10 +22,12 @@ git commit -m "Add informative message about the commit"
 
 push the updated files to github:
 
+git push -u origin master
 git push
 
 get the files from github with:
 
+git pull -u origin master
 git pull
 
 
