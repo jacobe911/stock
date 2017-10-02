@@ -10,6 +10,10 @@ git remote add origin https://github.com/jacobe911/REPOSITORY_NAME_HERE.git
 git push -u origin master <-- only use if just setup a new repository else use
 git pull -u origin master <-- to get the files already within the repository
 
+check to see differences made to files and stage/commit status:
+
+git status
+
 stage files:
 
 git add -A
