@@ -1,0 +1,26 @@
+List of things to do upon setup:
+
+choose anything that you want to autoload and set it in config/autoload.php.
+
+config items in config/config.php:
+
+set base url = '' // put in domain name.
+set $config['csrf_protection'] = FALSE; to TRUE if want to enable cross site request forgery protection.
+choose the session driver you want, if use database make sure to setup the table in your database.
+
+databse setup in config/database.php:
+
+change the username, password to your database account.
+change database to your database name.
+change hostname if not localhost.
+
+change any ion_auth config items that you want, but make sure you setup up the database correctly.
+
+choose your default controller in config/routes.php.
+
+change the sql file to reflect any changes during setup so the database is setup correctly.
+
+create your database.
+
+
+There are a few examples in the controllers and views folders to use to help setup users accounts, with forms and validation using ion_auth.
