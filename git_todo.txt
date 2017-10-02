@@ -29,3 +29,10 @@ git push
 get the files from github with:
 
 git pull
+
+
+use full links:
+
+https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf
+
+https://try.github.io/levels/1/challenges/1
