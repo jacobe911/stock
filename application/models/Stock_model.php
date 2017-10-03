@@ -15,7 +15,7 @@ class Stock_model extends CI_Model
     public function get_stocks()
     {
         
-        $query = $this->db->query('SELECT * FROM stocks');
+        $query = $this->db->query('SELECT * FROM stocks ORDER BY `date` ASC');
         return $query->result();
                     
     }
