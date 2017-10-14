@@ -40,44 +40,49 @@ class Home extends MY_Controller {
 
 		foreach ($stocks as $stock) {
 
-			$lowest = 999999999999;
-			$highest = 1;
+			if($stock->date > 1501550000)
+			{
 
-			$json_results = json_decode(file_get_contents("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=".$stock->ticker."&apikey=6LUN0XUIMENB1Y4C"),true);
+				$lowest = 999999999999;
+				$highest = 1;
 
-			$stockprice = $json_results['Time Series (Daily)'];
+				$json_results = json_decode(file_get_contents("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=".$stock->ticker."&apikey=6LUN0XUIMENB1Y4C"),true);
 
-			$most_recent = (reset($stockprice));
-			
-			$currentprice = $most_recent["4. close"];
+				$stockprice = $json_results['Time Series (Daily)'];
 
-			foreach ($stockprice as $date => $prices) {
+				$most_recent = (reset($stockprice));
+				
+				$currentprice = $most_recent["4. close"];
 
-				if (($stock->date - 10) < strtotime($date)) {
+				foreach ($stockprice as $date => $prices) {
 
-					if ($prices['3. low'] < $lowest) {
+					if (($stock->date - 10) < strtotime($date)) {
 
-						$lowest = $prices['3. low'];
+						if ($prices['3. low'] < $lowest) {
 
-					}
+							$lowest = $prices['3. low'];
 
-					if ($prices['2. high'] > $highest) {
+						}
 
-						$highest = $prices['2. high'];
+						if ($prices['2. high'] > $highest) {
+
+							$highest = $prices['2. high'];
+
+						}
 
 					}
 
 				}
+						
+				$lowestpl = round(((($lowest - $stock->buy_price)/($stock->buy_price)) * 100), 2);
 
+				$currentpl = round(((($currentprice - $stock->buy_price)/($stock->buy_price)) * 100), 2);
+
+				$highestpl = round(((($highest - $stock->buy_price)/($stock->buy_price)) * 100), 2);
+
+				$this->stock_model->update_stock_prices($lowest,$currentprice,$highest,$lowestpl,$currentpl,$highestpl,$stock->ticker);
+			
 			}
-					
-			$lowestpl = round(((($lowest - $stock->buy_price)/($stock->buy_price)) * 100), 2);
-
-			$currentpl = round(((($currentprice - $stock->buy_price)/($stock->buy_price)) * 100), 2);
-
-			$highestpl = round(((($highest - $stock->buy_price)/($stock->buy_price)) * 100), 2);
-
-			$this->stock_model->update_stock_prices($lowest,$currentprice,$highest,$lowestpl,$currentpl,$highestpl,$stock->ticker);
 
 		}
 
